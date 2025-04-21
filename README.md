@@ -1179,11 +1179,11 @@ codebuild-ror-app-role
 ### Step 2: Source Settings
 1. Under **Source**, click **Add source**
 2. **Source provider**: Choose your source (e.g. GitHub, CodeCommit, Bitbucket)
-3. Authenticate and pick your repository
-4. check **Webhooks** if you want to trigger builds on code push
+3. **Repository**: Click Repository in my GitHub Account, Authenticate and pick your repository
+4. Check **Webhooks** (Rebuild every time a code change is pushed to this repository) if you want to trigger builds on code push, Click on **Single Build**
 5. Create Webhook in AWS CodeBuild
    1. **Navigate to the GitHub settings page for the GitHub resource associated with your CodeBuild project**
-   2. **Select Webhooks and click Add webhook*
+   2. **Select Webhooks and click Add webhook**
    3. **Add the above Payload URL value under Payload URL**
    4. **Set the Content type to application/json**
    5. **Add the above Secret value under Secret**
@@ -1193,13 +1193,14 @@ codebuild-ror-app-role
    9. **Click Add webhook**
 
 ### Step 3: Environment Settings
-
+0. **Provisioning Model**: Select `On-Demand`
 1. **Environment image**: Select `Managed image`
-2. **Operating system**: Amazon Linux 2
-3. **Runtime(s)**: Standard
-4. **Image**: Choose latest standard (e.g. `aws/codebuild/standard:7.0`)
-5. **Environment type**: `Linux`
-6. **Service role**:
+2. **Compute**: Select `EC2`
+3. **Running Mode**: Select `Container`
+4. **Operating system**: Ubuntu
+5. **Runtime(s)**: Standard
+6. **Image**: Choose latest standard (e.g. `aws/codebuild/standard:7.0`)
+7. **Service role**:
    - Choose an existing one (make sure this role has access to:
      - Secrets Manager
      - ECR (if pushing image)
