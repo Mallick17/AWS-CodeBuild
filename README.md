@@ -245,8 +245,6 @@ Once all keys are added:
 - **Use case**: Choose **CodeBuild**
 - Click **Next**
 
----
-
 ### 2. **Attach Policies**
 
 <details>
@@ -1171,3 +1169,4 @@ codebuild-ror-app-role
 
 ### 4. **Finish and Create Role**
 ---
+
