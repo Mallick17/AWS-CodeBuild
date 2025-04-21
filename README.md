@@ -248,7 +248,7 @@ Once all keys are added:
 ---
 
 ### 2. **Attach Policies**
-- **I. AmazonEC2ContainerRegistryPowerUser**
+- **I. `AmazonEC2ContainerRegistryPowerUser`**
   - Provides full access to Amazon EC2 Container Registry repositories, but does not allow repository deletion or policy changes.
   - AWS managed
 
@@ -287,7 +287,7 @@ Once all keys are added:
   
 </details>
   
-- **II. AmazonECS_FullAccess**
+- **II. `AmazonECS_FullAccess`**
   - Provides administrative access to Amazon ECS resources and enables ECS features through access to other AWS service resources, including VPCs, Auto Scaling groups, and CloudFormation stacks.
   - AWS managed
   
@@ -548,7 +548,7 @@ Once all keys are added:
 
 </details>
 
-- **III. AmazonRDSReadOnlyAccess**
+- **III. `AmazonRDSReadOnlyAccess`**
   - Provides read only access to Amazon RDS via the AWS Management Console.
   - AWS managed
 
@@ -610,7 +610,7 @@ Once all keys are added:
 
 </details>
 
-- **IV. AmazonVPCFullAccess**
+- **IV. `AmazonVPCFullAccess`**
   - Provides full access to Amazon VPC via the AWS Management Console.
   - AWS managed
 
@@ -788,7 +788,7 @@ Once all keys are added:
 
 </details>
 
-- **V. AWSCodeBuildAdminAccess**
+- **V. `AWSCodeBuildAdminAccess`**
   - Provides full access to AWS CodeBuild via the AWS Management Console. Also attach AmazonS3ReadOnlyAccess to provide access to download build artifacts, and attach IAMFullAccess to create and manage the service role for CodeBuild.
   - AWS managed
 
@@ -941,7 +941,7 @@ Once all keys are added:
 
 </details>
 
-- **VI. CloudWatchLogsFullAccess**
+- **VI. `CloudWatchLogsFullAccess`**
   - Provides full access to AWS CodeBuild via the AWS Management Console. Also attach AmazonS3ReadOnlyAccess to provide access to download build artifacts, and attach IAMFullAccess to create and manage the service role for CodeBuild.
   - AWS managed
 
@@ -967,7 +967,7 @@ Once all keys are added:
 
 </details>
 
-- **VII. CodeBuildBasePolicy-codebuild-ror-app-role-ap-south-1**
+- **VII. `CodeBuildBasePolicy-codebuild-ror-app-role-ap-south-1`**
   - Customer managed
   
 <details>
@@ -1021,7 +1021,7 @@ Once all keys are added:
 
 </details>
 
-- **VIII. CodeBuildCodeConnectionsSourceCredentialsPolicy-ror-chat-app-build-ap-south-1-339713104321**
+- **VIII. `CodeBuildCodeConnectionsSourceCredentialsPolicy-ror-chat-app-build-ap-south-1-339713104321`**
   - Policy used in trust relationship with CodeBuild
   - Customer managed
 
@@ -1052,7 +1052,7 @@ Once all keys are added:
 
 </details>
 
-- **IX. CodeBuildSecretsManagerPolicy-chat-app-ap-south-1**
+- **IX. `CodeBuildSecretsManagerPolicy-chat-app-ap-south-1`**
   - Policy used in trust relationship with CodeBuild
   - Customer managed
 
@@ -1078,7 +1078,7 @@ Once all keys are added:
 
 </details>
 
-- **X. SecretsManagerReadWrite**
+- **X. `SecretsManagerReadWrite`**
   - Provides read/write access to AWS Secrets Manager via the AWS Management Console. Note: this exludes IAM actions, so combine with IAMFullAccess if rotation configuration is required.
   - AWS managed
 
