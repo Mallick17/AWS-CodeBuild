@@ -1162,4 +1162,12 @@ Once all keys are added:
 
 </details>
 
+### 3. **Give Role a Name**
+
+Example:
+```
+codebuild-ror-app-role
+```
+
+### 4. **Finish and Create Role**
 ---
