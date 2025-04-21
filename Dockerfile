@@ -1,6 +1,7 @@
 # Dockerfile
 
-FROM ruby:3.2.2
+## FROM ruby:3.2.2
+FROM public.ecr.aws/docker/library/ruby:3.2.2
 ## This pulls the official Ruby 3.2.2 image from Docker Hub (Docker Hub),
 ## which includes Ruby and a Debian-based Linux environment.
 ## This is the foundation for the container, ensuring compatibility with the RoR applica                                                                                                tion.
