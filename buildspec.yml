@@ -27,7 +27,7 @@ phases:
       - echo "DB_PORT=$DB_PORT" >> .env
       - echo "DB_NAME=$DB_NAME" >> .env
       - echo "REDIS_URL=$REDIS_URL" >> .env
-      - echo "RAILS_MASTER_KEY=$RAILS_MASTER_KEY" > .env
+      - echo "RAILS_MASTER_KEY=$RAILS_MASTER_KEY" >> .env
       - echo "SECRET_KEY_BASE=$SECRET_KEY_BASE" >> .env
 
   build:
