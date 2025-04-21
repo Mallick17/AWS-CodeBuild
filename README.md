@@ -96,3 +96,59 @@ CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
 
 </details>
+
+## Create `buildspec.yml` in the root path of Repo
+
+<details>
+  <summary>Click to view buildspec.yml</summary>
+
+```yml
+version: 0.2
+
+env:
+  variables:
+    IMAGE_NAME: "chat-app"
+    IMAGE_TAG: "latest"
+  secrets-manager:
+    RAILS_ENV: chat-app-secrets:RAILS_ENV
+    DB_USER: chat-app-secrets:DB_USER
+    DB_PASSWORD: chat-app-secrets:DB_PASSWORD
+    DB_HOST: chat-app-secrets:DB_HOST
+    DB_PORT: chat-app-secrets:DB_PORT
+    DB_NAME: chat-app-secrets:DB_NAME
+    REDIS_URL: chat-app-secrets:REDIS_URL
+    RAILS_MASTER_KEY: chat-app-secrets:RAILS_MASTER_KEY
+    SECRET_KEY_BASE: chat-app-secrets:SECRET_KEY_BASE
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
+      - echo "RAILS_ENV=$RAILS_ENV" > .env
+      - echo "DB_USER=$DB_USER" >> .env
+      - echo "DB_PASSWORD=$DB_PASSWORD" >> .env
+      - echo "DB_HOST=$DB_HOST" >> .env
+      - echo "DB_PORT=$DB_PORT" >> .env
+      - echo "DB_NAME=$DB_NAME" >> .env
+      - echo "REDIS_URL=$REDIS_URL" >> .env
+      - echo "RAILS_MASTER_KEY=$RAILS_MASTER_KEY" >> .env
+      - echo "SECRET_KEY_BASE=$SECRET_KEY_BASE" >> .env
+
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_NAME:$IMAGE_TAG $ECR_REPO_URI:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push $ECR_REPO_URI:$IMAGE_TAG
+      - echo Build completed successfully.
+
+artifacts:
+  files: []
+```
+  
+</details>
