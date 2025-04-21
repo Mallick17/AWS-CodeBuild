@@ -1170,3 +1170,91 @@ codebuild-ror-app-role
 ### 4. **Finish and Create Role**
 ---
 
+## Step-by-Step Guide: Build Docker Image with AWS CodeBuild (via Console)
+### Step 1: Open CodeBuild and Start New Project
+1. **Project name**: `chat-app` (you’ve done this)
+2. **Project type**: Keep **Default project** selected
+3. Expand **Additional configuration** if you want to add tags or build timeout (optional)
+
+### Step 2: Source Settings
+1. Under **Source**, click **Add source**
+2. **Source provider**: Choose your source (e.g. GitHub, CodeCommit, Bitbucket)
+3. Authenticate and pick your repository
+4. check **Webhooks** if you want to trigger builds on code push
+5. Create Webhook in AWS CodeBuild
+   1. **Navigate to the GitHub settings page for the GitHub resource associated with your CodeBuild project**
+   2. **Select Webhooks and click Add webhook*
+   3. **Add the above Payload URL value under Payload URL**
+   4. **Set the Content type to application/json**
+   5. **Add the above Secret value under Secret**
+   6. **Under Which events would you like to trigger this webhook?, select Let me select individual events**
+   7. **Select the individual webhook event types you would like to send to CodeBuild**
+   8. **For GitHub Actions runner projects, select the workflow_id jobs event type**
+   9. **Click Add webhook**
+
+### Step 3: Environment Settings
+
+1. **Environment image**: Select `Managed image`
+2. **Operating system**: Amazon Linux 2
+3. **Runtime(s)**: Standard
+4. **Image**: Choose latest standard (e.g. `aws/codebuild/standard:7.0`)
+5. **Environment type**: `Linux`
+6. **Service role**:
+   - Choose an existing one (make sure this role has access to:
+     - Secrets Manager
+     - ECR (if pushing image)
+     - S3 (if pulling artifacts)
+     - CloudWatch Logs
+
+### Step 4: Add Secrets from AWS Secrets Manager
+1. Scroll down to the **Environment variables** section
+2. Click **"Add environment variable"**
+3. Use this format:
+- **Name**: `ENV_VARS`
+  - **Value**: `arn:aws:secretsmanager`
+  - **Type**: Choose **Secrets Manager**
+
+- **Name**: `AWS_DEFAULT_REGION`
+  - **Value**: `ap-south-1`
+  - **Type**: Choose **Plaintext**
+
+- **Name**: `AWS_ACCOUNT_ID`
+  - **Value**: `339713104321`
+  - **Type**: Choose **Plaintext**
+
+- **Name**: `ECR_REPO_URI`
+  - **Value**: `339713104321.dkr.ecr.ap`
+  - **Type**: Choose **Plaintext**
+ 
+✳ CodeBuild will inject the secret into environment variables automatically.
+
+### Step 5: Buildspec Configuration
+1. **Buildspec**: Choose **Use a buildspec file**
+2. Leave it as default if your `buildspec.yml` is at the root of your repo
+
+📄 Your `buildspec.yml` should handle:
+- Docker login to ECR (if needed)
+- Docker build
+- Docker tag
+- Docker push (if needed)
+
+### Step 6: Artifacts
+1. If you're only pushing to ECR, choose:
+   - **Type**: `No artifacts`
+2. Otherwise, you can choose `Amazon S3` to store output (e.g. `.tar`, logs, etc.)
+
+### Step 7: Logs
+Enable CloudWatch logs (default is good).
+
+### Step 8: Click **Create Build Project**
+Once created, you'll be redirected to the project overview.
+
+### Step 9: Start a Manual Build
+1. Click **Start build**
+2. Confirm the branch and buildspec location
+3. Click **Start build**
+
+We can watch the logs live. If successful, your image will be built, and if configured, pushed to Amazon ECR.
+
+---
+
