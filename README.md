@@ -248,6 +248,11 @@ Once all keys are added:
 ---
 
 ### 2. **Attach Policies**
+
+<details>
+  <summary>Click to view all the 10 Policies Attached to the Role</summary>
+
+
 - **I. `AmazonEC2ContainerRegistryPowerUser`**
   - Provides full access to Amazon EC2 Container Registry repositories, but does not allow repository deletion or policy changes.
   - AWS managed
@@ -1152,6 +1157,8 @@ Once all keys are added:
     ]
 }
 ```
+
+</details>
 
 </details>
 
