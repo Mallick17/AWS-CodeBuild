@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Running start.sh..."
 
-cd /home/ec2-user/chat-app
+cd /home/ubuntu/chat-app
 
 # Pull the latest image from ECR
 aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin <your-aws-account-id>.dkr.ecr.ap-south-1.amazonaws.com
