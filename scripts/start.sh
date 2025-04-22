@@ -23,7 +23,7 @@ $DOCKER_COMPOSE down || true
 echo "Fetching secrets from AWS Secrets Manager..."
 
 # Replace with your actual secret name
-SECRET_NAME="chat-app-secrets/env"
+SECRET_NAME="chat-app-secrets/env*"
 REGION="ap-south-1"
 
 # Fetch secrets from Secrets Manager
