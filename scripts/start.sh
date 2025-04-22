@@ -53,8 +53,10 @@ export DB_PASSWORD=$(echo "$SECRET_JSON" | jq -r '.DB_PASSWORD')
 export DB_HOST=$(echo "$SECRET_JSON" | jq -r '.DB_HOST')
 export DB_PORT=$(echo "$SECRET_JSON" | jq -r '.DB_PORT')
 export DB_NAME=$(echo "$SECRET_JSON" | jq -r '.DB_NAME')
+export SECRET_KEY_BASE=$(echo "$SECRET_JSON" | jq -r '.SECRET_KEY_BASE')
+export RAILS_MASTER_KEY=$(echo "$SECRET_JSON" | jq -r '.RAILS_MASTER_KEY')  # 👈 NEW
 
-echo "✅ Secrets loaded."
+echo "Secrets loaded and exported."
 
 # Start containers
 echo "🚀 Starting containers using Docker Compose..."
