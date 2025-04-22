@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     build: .
-    image: chat-app:latest
+    image: 339713104321.dkr.ecr.ap-south-1.amazonaws.com/chat-app:latest
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
     volumes:
       - .:/app
