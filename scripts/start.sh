@@ -21,4 +21,5 @@ $DOCKER pull 339713104321.dkr.ecr.ap-south-1.amazonaws.com/chat-app:latest
 $DOCKER_COMPOSE down || true
 
 # Start containers in detached mode
-$DOCKER_COMPOSE up -d
+$DOCKER_COMPOSE -f /home/ubuntu/chat-app/scripts/docker-compose.yml up -d
+
