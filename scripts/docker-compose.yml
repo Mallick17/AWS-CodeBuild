@@ -11,6 +11,8 @@ services:
       RAILS_ENV: production
       DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
       REDIS_URL: redis://redis:6379/0
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}         # ✅ Added
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}       # ✅ Added
     depends_on:
       - redis
     restart: always
