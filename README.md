@@ -16,13 +16,9 @@
 
 | Artifact Type | Destination      | Use Case                                                 |
 | ------------- | ---------------- | -------------------------------------------------------- |
-| **S3**        | Amazon S3 bucket | – Zipped code bundles (Node.js, Java JARs, static sites) |
+| **S3**        | Amazon S3 bucket | – Zipped code bundles (Node.js, Java JARs, static sites), Artifacts for CodeDeploy, CloudFormation |
+| **ECR**       | Amazon ECR repo | – Docker images for ECS, Kubernetes, Batch, or on‑prem.|
 
-```
-                                          – Artifacts for CodeDeploy, CloudFormation  
-```
-
-\| **ECR**       | Amazon ECR repo | – Docker images for ECS, Kubernetes, Batch, or on‑prem.|
 
 ---
 
