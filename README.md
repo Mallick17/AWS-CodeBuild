@@ -74,7 +74,7 @@ phases:
       - echo Pulling remote layer cache
       - docker pull $AWS_REGISTRY_URL:latest || true
       - echo Building Docker image with BuildKit cache...
-      - docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from type=registry,ref=$AWS_REGISTRY_URL:latest --progress=plain -t $AWS_REGISTRY_URL:${CODEBUILD_RESOLVED_SOURCE_VERSION} -f  .
+      - docker build --build-arg BUILDKIT_INLINE_CACHE=1 --build-arg FARE_REPO_TOKEN=$FARE_REPO_TOKEN --build-arg NEW_RELIC_KEY=$NEW_RELIC_KEY --build-arg NEW_RELIC_APPNAME=$NEW_RELIC_APPNAME --cache-from type=registry,ref=$AWS_REGISTRY_URL:latest --cache-from $AWS_REGISTRY_URL:latest --progress=plain -t $AWS_REGISTRY_URL:${CODEBUILD_RESOLVED_SOURCE_VERSION} -f docker-octane-al2023/testing/app-image/Dockerfile .
       - echo Build completed on `date`
       - docker push $AWS_REGISTRY_URL:${CODEBUILD_RESOLVED_SOURCE_VERSION}
       - MANIFEST=$(aws ecr batch-get-image --repository-name $ECR_REPO_NAME --image-ids imageTag="${CODEBUILD_RESOLVED_SOURCE_VERSION}" --output json | jq --raw-output --join-output '.images[0].imageManifest')
